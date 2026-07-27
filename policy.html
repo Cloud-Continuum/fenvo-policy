@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Cloud Continuum</title>
+<style>
+  :root {
+    --ink: #000000;
+    --body: #595959;
+    --muted: #7f7f7f;
+    --link: #003afa;
+    --rule: #e6e6e6;
+    --panel: #fafafa;
+    --max: 820px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--body);
+    font-size: 15px;
+    line-height: 1.6;
+    background: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+  h1 {
+    font-size: 26px;
+    color: var(--ink);
+    margin: 0 0 6px;
+    letter-spacing: .2px;
+  }
+  h2 {
+    font-size: 19px;
+    color: var(--ink);
+    margin: 44px 0 12px;
+    scroll-margin-top: 24px;
+  }
+  h3 {
+    font-size: 17px;
+    color: var(--ink);
+    margin: 26px 0 10px;
+  }
+  p { margin: 0 0 14px; }
+  a { color: var(--link); word-break: break-word; }
+  .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 32px;
+  }
+  .in-short {
+    font-style: italic;
+  }
+  .in-short strong { font-style: normal; }
+  ul { padding-left: 22px; margin: 0 0 14px; }
+  ul { list-style-type: square; }
+  ul ul { list-style-type: circle; }
+  li { margin: 6px 0; }
+  hr {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+  .toc a { display: block; padding: 3px 0; }
+  .lead { margin-bottom: 8px; }
+  /* Data table */
+  .table-scroll { overflow-x: auto; margin: 16px 0 24px; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 640px;
+    font-size: 13.5px;
+  }
+  caption {
+    text-align: left;
+    font-weight: bold;
+    color: var(--ink);
+    padding-bottom: 8px;
+    font-size: 15px;
+  }
+  th, td {
+    border: 1px solid var(--rule);
+    padding: 10px 12px;
+    vertical-align: top;
+    text-align: left;
+  }
+  thead th {
+    background: var(--panel);
+    color: var(--ink);
+  }
+  td strong { color: var(--ink); }
+  .callout {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .feature { margin: 18px 0; }
+  .feature .name { color: var(--ink); font-weight: bold; }
+  .back-top { font-size: 13px; }
+  @media (max-width: 560px) {
+    .wrap { padding: 40px 18px 72px; }
+    h1 { font-size: 23px; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <h1>Privacy Policy</h1>
+  <p class="subtitle">Last updated July 24, 2026</p>
+
+  <p>This Privacy Notice for <strong>Cloud Continuum</strong> ("we," "us," or "our"), describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services ("Services"), including when you:</p>
+  <ul>
+    <li>Download and use our mobile application (Fenvo), or any other application of ours that links to this Privacy Notice</li>
+    <li>Use Fenvo</li>
+    <li>Engage with us in other related ways, including any marketing or events</li>
+  </ul>
+
+  <p><strong>Questions or concerns?</strong> Reading this Privacy Notice will help you understand your privacy rights and choices. We are responsible for making decisions about how your personal information is processed. If you do not agree with our policies and practices, please do not use our Services.</p>
+
+  <hr>
+
+  <h2>Core Features &amp; Technical Functionality</h2>
+
+  <div class="feature">
+    <p class="name">A. Account Creation &amp; Dual-Verification Authentication</p>
+    <p><strong>Functionality:</strong> Users register using a phone number and an email address to ensure account security.</p>
+    <p><strong>Mechanism:</strong> Phone number verification via Firebase Phone Authentication (SMS OTP). Email address verification via a 6-digit confirmation code.</p>
+    <p><strong>Data Involved:</strong> Phone number, email address, unique user ID (UUID), and device installation identifier (device_id).</p>
+  </div>
+
+  <div class="feature">
+    <p class="name">B. Local-First Financial Data Storage</p>
+    <p><strong>Functionality:</strong> Users can manually log transactions, create categories, establish envelope budgets, and set savings goals.</p>
+    <p><strong>Mechanism:</strong> All financial records are immediately saved to a local SQLite database (Drift) on the user's physical device.</p>
+    <p><strong>Data Involved:</strong> Transaction titles, amounts, currencies, timestamps, payment methods, transaction types (income/expense), category names, envelope target amounts, and goal progress.</p>
+  </div>
+
+  <div class="feature">
+    <p class="name">C. Automated Financial SMS Processing (Android / iOS)</p>
+    <p><strong>Functionality:</strong> Automatically detects and drafts transaction entries from incoming banking and digital wallet SMS messages.</p>
+    <p><strong>Mechanism:</strong> Android uses a local background broadcast listener (RECEIVE_SMS / READ_SMS) to extract transaction details (amount, currency, merchant) using local regular expression (Regex) pattern matching. iOS uses user-initiated Apple Shortcuts integration via URL schemes (payzabt://process-sms).</p>
+    <p><strong>Privacy Safeguard:</strong> Parsing happens 100% locally on the device. Non-financial messages are completely ignored. SMS message content is never uploaded to external servers.</p>
+  </div>
+
+  <div class="feature">
+    <p class="name">D. Cloud Synchronization Engine</p>
+    <p><strong>Functionality:</strong> Keeps user data backed up and synchronized across multiple logged-in devices.</p>
+    <p><strong>Mechanism:</strong> Uses an offline-first SyncOutbox queue pattern. Local mutations (create, update, delete) are logged locally and pushed to the cloud server via HTTPS when an internet connection is available. Implements Soft Delete (deleted_at tombstones) to synchronize deletions across devices before local database cleanup.</p>
+    <p><strong>Data Involved:</strong> Encrypted financial records, operation timestamps, sequence IDs (sync_cursor), and operation status logs.</p>
+  </div>
+
+  <div class="feature">
+    <p class="name">E. Analytics &amp; Insights</p>
+    <p><strong>Functionality:</strong> Generates visual reports (charts, monthly spending trends, category breakdowns).</p>
+    <p><strong>Mechanism:</strong> Queries data directly from the local SQLite database. Optional AI models (e.g., Gemini API) may process anonymized transaction titles locally/cloud-side to suggest automatic categories.</p>
+  </div>
+
+  <h2>Data Collection Summary</h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Data Category</th>
+          <th>Data Type Collected</th>
+          <th>Purpose of Collection</th>
+          <th>Storage Location</th>
+          <th>Shared with 3rd Parties?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Personal Identifiers</strong></td>
+          <td>Email address, Phone number, User UUID</td>
+          <td>Account creation, authentication, fraud prevention, multi-device account matching.</td>
+          <td>Local DB &amp; Cloud Server</td>
+          <td>Shared with Firebase Auth (SMS OTP)</td>
+        </tr>
+        <tr>
+          <td><strong>Financial Information</strong></td>
+          <td>Transactions, incomes, budgets, envelope balances, savings goals</td>
+          <td>Core app functionality: tracking money, computing balances, generating spending analytics.</td>
+          <td>Local DB &amp; Encrypted Cloud Server</td>
+          <td>No (Strictly confidential)</td>
+        </tr>
+        <tr>
+          <td><strong>SMS Data</strong></td>
+          <td>Banking transaction SMS alerts</td>
+          <td>Automatically parsing expense amounts and merchants.</td>
+          <td>Processed in-memory locally only</td>
+          <td>No (Never transmitted or stored remotely)</td>
+        </tr>
+        <tr>
+          <td><strong>Device &amp; Tech Info</strong></td>
+          <td>Device ID, OS version, sync sequence numbers, network status</td>
+          <td>Managing multi-device database sync, background queueing, error logging.</td>
+          <td>Local DB &amp; Cloud Server</td>
+          <td>No</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Sensitive System Permissions Required</h2>
+  <p>To operate its core features, PayZabt requests the following system permissions:</p>
+  <ul>
+    <li><strong>RECEIVE_SMS / READ_SMS (Android):</strong> Essential for automatic parsing of banking transaction alerts. Used strictly for financial SMS detection. No personal or promotional SMS messages are read, saved, or uploaded.</li>
+    <li><strong>INTERNET &amp; ACCESS_NETWORK_STATE:</strong> Required for Firebase authentication checks, background database sync, and connectivity status monitoring.</li>
+    <li><strong>POST_NOTIFICATIONS:</strong> To send local budget alert reminders (e.g., overspending warnings) and goal achievement notifications.</li>
+  </ul>
+
+  <h2>Security &amp; Data Retention Policies</h2>
+  <ul>
+    <li><strong>Data Encryption:</strong> All network communication between the app and backend services uses TLS/HTTPS encryption. Local SQLite databases are stored in secure application-private sandboxes.</li>
+    <li><strong>Data Retention:</strong> Personal and financial data is retained as long as the user maintains an active account.</li>
+    <li><strong>Account &amp; Data Deletion:</strong> Users can request full account and data deletion through the app settings or via a web contact form. Upon deletion, all cloud database records associated with the User ID are permanently purged, and local database files are wiped from the device upon logout.</li>
+  </ul>
+
+  <hr>
+
+  <h2>Summary of Key Points</h2>
+  <p><strong><em>This summary provides key points from our Privacy Notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our <a href="#toc">table of contents</a> below to find the section you are looking for.</em></strong></p>
+
+  <p><strong>What personal information do we process?</strong> When you visit, use, or navigate our Services, we may process personal information depending on how you interact with us and the Services, the choices you make, and the products and features you use. Learn more about <a href="#infocollect">personal information you disclose to us</a>.</p>
+
+  <p><strong>Do we process any sensitive personal information?</strong> Some of the information may be considered "special" or "sensitive" in certain jurisdictions, for example your racial or ethnic origins, sexual orientation, and religious beliefs. We do not process sensitive personal information.</p>
+
+  <p><strong>Do we collect any information from third parties?</strong> We do not collect any information from third parties.</p>
+
+  <p><strong>How do we process your information?</strong> We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about <a href="#infouse">how we process your information</a>.</p>
+
+  <p><strong>In what situations and with which parties do we share personal information?</strong> We may share information in specific situations and with specific third parties. Learn more about <a href="#whoshare">when and with whom we share your personal information</a>.</p>
+
+  <p><strong>How do we keep your information safe?</strong> We have adequate organizational and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Learn more about <a href="#infosafe">how we keep your information safe</a>.</p>
+
+  <p><strong>What are your rights?</strong> Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about <a href="#privacyrights">your privacy rights</a>.</p>
+
+  <p><strong>How do you exercise your rights?</strong> The easiest way to exercise your rights is by contacting us at <a href="mailto:mohamed.magdy@cloudcontinuum.com">mohamed.magdy@cloudcontinuum.com</a>. We will consider and act upon any request in accordance with applicable data protection laws.</p>
+
+  <p>Want to learn more about what we do with any information we collect? <a href="#toc">Review the Privacy Notice in full</a>.</p>
+
+  <hr>
+
+  <h2 id="toc">Table of Contents</h2>
+  <div class="toc">
+    <a href="#infocollect">1. What information do we collect?</a>
+    <a href="#infouse">2. How do we process your information?</a>
+    <a href="#whoshare">3. When and with whom do we share your personal information?</a>
+    <a href="#sociallogins">4. How do we handle your social logins?</a>
+    <a href="#inforetain">5. How long do we keep your information?</a>
+    <a href="#infosafe">6. How do we keep your information safe?</a>
+    <a href="#infominors">7. Do we collect information from minors?</a>
+    <a href="#privacyrights">8. What are your privacy rights?</a>
+    <a href="#DNT">9. Controls for do-not-track features</a>
+    <a href="#policyupdates">10. Do we make updates to this notice?</a>
+    <a href="#contact">11. How can you contact us about this notice?</a>
+    <a href="#request">12. How can you review, update, or delete the data we collect from you?</a>
+  </div>
+
+  <hr>
+
+  <h2 id="infocollect">1. What information do we collect?</h2>
+
+  <h3>Personal information you disclose to us</h3>
+  <p class="in-short"><strong>In Short:</strong> We collect personal information that you provide to us.</p>
+  <p>We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.</p>
+  <p><strong>Personal Information Provided by You.</strong> The personal information that we collect depends on the context of your interactions with us and the Services, the choices you make, and the products and features you use. The personal information we collect may include the following:</p>
+  <ul>
+    <li>names</li>
+    <li>phone numbers</li>
+    <li>mailing addresses</li>
+    <li>email addresses</li>
+    <li>passwords</li>
+    <li>contact preferences</li>
+  </ul>
+  <p><strong>Sensitive Information.</strong> We do not process sensitive information.</p>
+  <p><strong>Social Media Login Data.</strong> We may provide you with the option to register with us using your existing social media account details, like your Facebook, X, or other social media account. If you choose to register in this way, we will collect certain profile information about you from the social media provider, as described in the section called <a href="#sociallogins">"How do we handle your social logins?"</a> below.</p>
+  <p><strong>Application Data.</strong> If you use our application(s), we also may collect the following information if you choose to provide us with access or permission:</p>
+  <ul>
+    <li><em>Mobile Device Access.</em> We may request access or permission to certain features from your mobile device, including your mobile device's microphone, and other features. If you wish to change our access or permissions, you may do so in your device's settings.</li>
+    <li><em>Push Notifications.</em> We may request to send you push notifications regarding your account or certain features of the application(s). If you wish to opt out from receiving these types of communications, you may turn them off in your device's settings.</li>
+  </ul>
+  <p>This information is primarily needed to maintain the security and operation of our application(s), for troubleshooting, and for our internal analytics and reporting purposes.</p>
+  <p>All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.</p>
+
+  <h3>Information automatically collected</h3>
+  <p class="in-short"><strong>In Short:</strong> Some information — such as your Internet Protocol (IP) address and/or browser and device characteristics — is collected automatically when you visit our Services.</p>
+  <p>We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information. This information is primarily needed to maintain the security and operation of our Services, and for our internal analytics and reporting purposes.</p>
+  <p>The information we collect includes:</p>
+  <ul>
+    <li><em>Log and Usage Data.</em> Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called "crash dumps"), and hardware settings).</li>
+  </ul>
+
+  <h3>Google API</h3>
+  <p>Our use of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the <a href="https://developers.google.com/terms/api-services-user-data-policy#limited-use" target="_blank" rel="noopener noreferrer">Limited Use requirements</a>.</p>
+
+  <h2 id="infouse">2. How do we process your information?</h2>
+  <p class="in-short"><strong>In Short:</strong> We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent.</p>
+  <p><strong>We process your personal information for a variety of reasons, depending on how you interact with our Services, including:</strong></p>
+  <ul>
+    <li><strong>To facilitate account creation and authentication and otherwise manage user accounts.</strong> We may process your information so you can create and log in to your account, as well as keep your account in working order.</li>
+  </ul>
+
+  <h2 id="whoshare">3. When and with whom do we share your personal information?</h2>
+  <p class="in-short"><strong>In Short:</strong> We may share information in specific situations described in this section and/or with the following third parties.</p>
+  <p>We may need to share your personal information in the following situations:</p>
+  <ul>
+    <li><strong>Business Transfers.</strong> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</li>
+  </ul>
+
+  <h2 id="sociallogins">4. How do we handle your social logins?</h2>
+  <p class="in-short"><strong>In Short:</strong> If you choose to register or log in to our Services using a social media account, we may have access to certain information about you.</p>
+  <p>Our Services offer you the ability to register and log in using your third-party social media account details (like your Facebook or X logins). Where you choose to do this, we will receive certain profile information about you from your social media provider. The profile information we receive may vary depending on the social media provider concerned, but will often include your name, email address, friends list, and profile picture, as well as other information you choose to make public on such a social media platform.</p>
+  <p>We will use the information we receive only for the purposes that are described in this Privacy Notice or that are otherwise made clear to you on the relevant Services. Please note that we do not control, and are not responsible for, other uses of your personal information by your third-party social media provider. We recommend that you review their privacy notice to understand how they collect, use, and share your personal information, and how you can set your privacy preferences on their sites and apps.</p>
+
+  <h2 id="inforetain">5. How long do we keep your information?</h2>
+  <p class="in-short"><strong>In Short:</strong> We keep your information for as long as necessary to fulfill the purposes outlined in this Privacy Notice unless otherwise required by law.</p>
+  <p>We will only keep your personal information for as long as it is necessary for the purposes set out in this Privacy Notice, unless a longer retention period is required or permitted by law (such as tax, accounting, or other legal requirements). No purpose in this notice will require us keeping your personal information for longer than the period of time in which users have an account with us.</p>
+  <p>When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.</p>
+
+  <h2 id="infosafe">6. How do we keep your information safe?</h2>
+  <p class="in-short"><strong>In Short:</strong> We aim to protect your personal information through a system of organizational and technical security measures.</p>
+  <p>We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Although we will do our best to protect your personal information, transmission of personal information to and from our Services is at your own risk. You should only access the Services within a secure environment.</p>
+
+  <h2 id="infominors">7. Do we collect information from minors?</h2>
+  <p class="in-short"><strong>In Short:</strong> We do not knowingly collect data from or market to children under 18 years of age.</p>
+  <p>We do not knowingly collect, solicit data from, or market to children under 18 years of age, nor do we knowingly sell such personal information. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent's use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at <a href="mailto:mohamed.magdy@cloudcontinuum.com">mohamed.magdy@cloudcontinuum.com</a>.</p>
+
+  <h2 id="privacyrights">8. What are your privacy rights?</h2>
+  <p class="in-short"><strong>In Short:</strong> You may review, change, or terminate your account at any time, depending on your country, province, or state of residence.</p>
+  <p id="withdrawconsent"><strong><u>Withdrawing your consent:</u></strong> If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section <a href="#contact">"How can you contact us about this notice?"</a> below.</p>
+  <p>However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.</p>
+  <h3>Account Information</h3>
+  <p>If you would at any time like to review or change the information in your account or terminate your account, you can:</p>
+  <ul>
+    <li>Log in to your account settings and update your user account.</li>
+    <li>Contact us using the contact information provided.</li>
+  </ul>
+  <p>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.</p>
+
+  <h2 id="DNT">9. Controls for do-not-track features</h2>
+  <p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage, no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this Privacy Notice.</p>
+
+  <h2 id="policyupdates">10. Do we make updates to this notice?</h2>
+  <p class="in-short"><strong>In Short:</strong> Yes, we will update this notice as necessary to stay compliant with relevant laws.</p>
+  <p>We may update this Privacy Notice from time to time. The updated version will be indicated by an updated "Revised" date at the top of this Privacy Notice. If we make material changes to this Privacy Notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this Privacy Notice frequently to be informed of how we are protecting your information.</p>
+
+  <h2 id="contact">11. How can you contact us about this notice?</h2>
+  <p>If you have questions or comments about this notice, you may contact us by email at:</p>
+  <div class="callout">
+    <p><strong>Cloud Continuum</strong></p>
+    <p><a href="mailto:mohamed.magdy@cloudcontinuum.com">mohamed.magdy@cloudcontinuum.com</a></p>
+  </div>
+
+  <h2 id="request">12. How can you review, update, or delete the data we collect from you?</h2>
+  <p>Based on the applicable laws of your country, you may have the right to request access to the personal information we collect from you, details about how we have processed it, correct inaccuracies, or delete your personal information. You may also have the right to withdraw your consent to our processing of your personal information. These rights may be limited in some circumstances by applicable law. To request to review, update, or delete your personal information, please email us at <a href="mailto:mohamed.magdy@cloudcontinuum.com">mohamed.magdy@cloudcontinuum.com</a>.</p>
+
+</main>
+</body>
+</html>
