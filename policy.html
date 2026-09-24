@@ -117,7 +117,7 @@
 <main class="wrap">
 
   <h1>Privacy Policy</h1>
-  <p class="subtitle">Last updated July 24, 2026</p>
+  <p class="subtitle">Last updated September 24, 2026</p>
 
   <p>This Privacy Notice for <strong>Cloud Continuum</strong> ("we," "us," or "our"), describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services ("Services"), including when you:</p>
   <ul>
@@ -147,10 +147,10 @@
   </div>
 
   <div class="feature">
-    <p class="name">C. Automated Financial SMS Processing (Android / iOS)</p>
-    <p><strong>Functionality:</strong> Automatically detects and drafts transaction entries from incoming banking and digital wallet SMS messages.</p>
-    <p><strong>Mechanism:</strong> Android uses a local background broadcast listener (RECEIVE_SMS / READ_SMS) to extract transaction details (amount, currency, merchant) using local regular expression (Regex) pattern matching. iOS uses user-initiated Apple Shortcuts integration via URL schemes (payzabt://process-sms).</p>
-    <p><strong>Privacy Safeguard:</strong> Parsing happens 100% locally on the device. Non-financial messages are completely ignored. SMS message content is never uploaded to external servers.</p>
+    <p class="name">C. Automated Financial SMS Processing (Android only)</p>
+    <p><strong>Functionality:</strong> Optional. Detects banking and digital wallet SMS messages from sender names you add yourself, and drafts transaction entries for you to confirm.</p>
+    <p><strong>Mechanism:</strong> A background listener (RECEIVE_SMS / READ_SMS) checks each message on the device first. Messages that pass that check are sent as text to our transaction-extraction service, which returns a title, a category and a merchant name. The amount, currency and account details are read on the device.</p>
+    <p><strong>Privacy Safeguard:</strong> Messages that do not pass the on-device check never leave the phone. One-time passcodes and verification messages are always rejected. No transaction is added to your records without your confirmation. See <a href="#sms">Android SMS Transaction Detection</a> below for the full description of what is sent and what is not.</p>
   </div>
 
   <div class="feature">
@@ -165,6 +165,75 @@
     <p><strong>Functionality:</strong> Generates visual reports (charts, monthly spending trends, category breakdowns).</p>
     <p><strong>Mechanism:</strong> Queries data directly from the local SQLite database. Optional AI models (e.g., Gemini API) may process anonymized transaction titles locally/cloud-side to suggest automatic categories.</p>
   </div>
+
+  <h2 id="sms">Android SMS Transaction Detection</h2>
+  <p class="in-short"><strong>In Short:</strong> On Android only, and only if you switch it on, the app reads messages from bank senders you name yourself. Messages that look like transactions are sent to our servers as text so a draft transaction can be read out of them. Nothing is added to your records without your confirmation.</p>
+
+  <h3>Where this applies</h3>
+  <p>This is an Android feature. The app does not read SMS messages on iOS, and nothing in this section applies there.</p>
+  <p>The feature is entirely optional and is switched off until you switch it on. If you never switch it on, or you decline the SMS permission, the rest of the app works exactly the same and you add transactions by hand.</p>
+
+  <h3>Permissions we ask for</h3>
+  <p>Two Android permissions, and no others for this feature:</p>
+  <ul>
+    <li><strong>RECEIVE_SMS</strong> — to see messages as they arrive.</li>
+    <li><strong>READ_SMS</strong> — to read messages already stored in your inbox.</li>
+  </ul>
+  <p>The app cannot send SMS messages. It does not ask for permission to send them, and it never sends one.</p>
+
+  <h3>Which messages we read</h3>
+  <p>When you set the feature up, you type in the sender names your banks use — the short name that appears at the top of their messages. You also add the words that mark a message as a transaction. Both lists start empty. The feature cannot be switched on until you have added at least one sender and at least one word. We do not apply a built-in list of banks on your behalf.</p>
+  <p>The app looks at messages in two ways:</p>
+  <ul>
+    <li><strong>New messages</strong>, as they arrive on the phone.</li>
+    <li><strong>Messages already on your phone.</strong> Once, when you switch the feature on, over a date range the app shows you before it begins. After that, only to catch up on messages that arrived while the app was not running.</li>
+  </ul>
+  <p>Every incoming message passes through the app for a moment, because checking who sent it is the only way to know whether it is one of yours. A message from a sender that is not on your list is discarded on the phone straight away. It is not looked at any further, it is not saved, and it is not sent anywhere.</p>
+
+  <h3>Checks that run on your phone</h3>
+  <p>Before any message can leave your phone, it has to pass a series of checks that run entirely on the device:</p>
+  <ul>
+    <li><strong>One-time passcodes, verification codes and security messages are always rejected.</strong> This is the first check, before every other one. It cannot be switched off or overridden, including by words you add yourself.</li>
+    <li>Advertising and promotional messages are rejected.</li>
+    <li>Messages from senders that are not on your list are rejected.</li>
+    <li>A message must contain an amount, and either a currency or a word that describes a transaction.</li>
+    <li>Messages that only report a balance are rejected.</li>
+  </ul>
+  <p>A rejected message goes no further. We record only a short code saying which check it failed — never the message, and never any part of it.</p>
+  <p>Many accepted messages never need to go any further either. When the app recognises a bank's message format on its own, it reads the transaction on the phone and sends nothing.</p>
+
+  <h3>What we send to our servers</h3>
+  <div class="callout">
+    <p><strong>Please read this part.</strong> When a message passes the checks above and the app cannot read it on the phone, <strong>the full text of that message is sent to our servers</strong> so that a transaction can be read out of it. It is sent together with the names of the categories you use, so the transaction can be filed under the right one.</p>
+    <p>The text is sent as your bank wrote it. We do not remove or shorten anything in it beforehand. Anything your bank put in the message is sent along with the rest of it — the amount, any card or account digits the bank included, a reference number, the merchant's name, a balance.</p>
+    <p>The only changes we make are cosmetic ones that help the text be read: Arabic-Indic digits (٠١٢) are converted to Western digits (012), invisible formatting characters are removed, and repeated spaces are collapsed.</p>
+    <p>This travels over an encrypted (HTTPS) connection. No more than 120 messages per phone per day are sent this way.</p>
+    <p>Once a message reaches our servers it is used to produce the transaction and for nothing else. It is kept in line with <a href="#inforetain">"How long do we keep your information?"</a> below.</p>
+  </div>
+
+  <h3>What we do not send</h3>
+  <ul>
+    <li><strong>Your bank list and your keyword list.</strong> Both are stored on your phone only. They are not part of your account, they are not backed up, they are not synchronised to your other devices, and they are never sent to us.</li>
+    <li><strong>Messages that failed the checks.</strong> They never leave the phone, in any form.</li>
+    <li><strong>Any record of who sends you messages.</strong> Where the app keeps a breakdown of senders to help us improve recognition, it stays on the phone.</li>
+    <li><strong>Message text in usage statistics.</strong> When we record that the feature was used, we record counts, the currency, and a rounded amount range. No message text and no merchant name is ever included.</li>
+  </ul>
+
+  <h3>What is kept on your phone</h3>
+  <p>The text of a message is stored in the app's own storage on your phone while the transaction it produced is waiting for you to review it. This is so you can check the draft against the message it came from.</p>
+  <p>When you confirm the transaction, or when you discard it, the message text is deleted. A small record stays behind without the text, so the same bank message cannot turn into a second transaction later.</p>
+  <p>A draft you never review stays in the review list, with its message text, until you review it or until the data is deleted as described below. It does not expire on its own.</p>
+
+  <h3>Your controls</h3>
+  <ul>
+    <li><strong>Switch it off at any time</strong> in Settings. It stops immediately, including for messages already waiting to be handled. Switching it off does not withdraw the Android permission itself — that stays yours to manage in your phone's system settings.</li>
+    <li><strong>Edit your lists at any time.</strong> You can add or remove banks and keywords whenever you like.</li>
+    <li><strong>Every transaction waits for you.</strong> Nothing detected in a message is added to your records automatically. You confirm each one, and you can change any detail before you do.</li>
+  </ul>
+
+  <h3>Deleting this data</h3>
+  <p>When you log out, or when you delete your account, the app wipes its entire local database from the phone. The SMS review list, including any message text still sitting in it, is deleted first, before anything else. The app's stored settings are cleared at the same time, so your bank list, your keyword list and the on/off setting go with them.</p>
+  <p>Deleting your account also sends a deletion request to our servers, which removes the records held against your account. Logging out does not do this — it clears the phone only.</p>
 
   <h2>Data Collection Summary</h2>
   <div class="table-scroll">
@@ -195,10 +264,10 @@
         </tr>
         <tr>
           <td><strong>SMS Data</strong></td>
-          <td>Banking transaction SMS alerts</td>
-          <td>Automatically parsing expense amounts and merchants.</td>
-          <td>Processed in-memory locally only</td>
-          <td>No (Never transmitted or stored remotely)</td>
+          <td>Text of banking transaction messages, from sender names you add yourself (Android only, optional)</td>
+          <td>Reading the amount, merchant and category of a transaction for you to confirm.</td>
+          <td>On the device while awaiting your review; messages that pass the on-device check are also sent to our servers as text</td>
+          <td>No. See <a href="#sms">Android SMS Transaction Detection</a></td>
         </tr>
         <tr>
           <td><strong>Device &amp; Tech Info</strong></td>
@@ -214,7 +283,7 @@
   <h2>Sensitive System Permissions Required</h2>
   <p>To operate its core features, PayZabt requests the following system permissions:</p>
   <ul>
-    <li><strong>RECEIVE_SMS / READ_SMS (Android):</strong> Essential for automatic parsing of banking transaction alerts. Used strictly for financial SMS detection. No personal or promotional SMS messages are read, saved, or uploaded.</li>
+    <li><strong>RECEIVE_SMS / READ_SMS (Android):</strong> Optional, and switched off until you switch it on. Used to detect banking transaction alerts from sender names you add yourself. Messages from other senders, one-time passcodes, and messages that are not transactions are rejected on the device and are never saved or sent. Messages that pass that check are sent to our servers as text so the transaction can be read out of them — see <a href="#sms">Android SMS Transaction Detection</a>. The app never sends SMS messages.</li>
     <li><strong>INTERNET &amp; ACCESS_NETWORK_STATE:</strong> Required for Firebase authentication checks, background database sync, and connectivity status monitoring.</li>
     <li><strong>POST_NOTIFICATIONS:</strong> To send local budget alert reminders (e.g., overspending warnings) and goal achievement notifications.</li>
   </ul>
