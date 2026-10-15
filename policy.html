@@ -117,7 +117,7 @@
 <main class="wrap">
 
   <h1>Privacy Policy</h1>
-  <p class="subtitle">Last updated September 24, 2026</p>
+  <p class="subtitle">Last updated October 14, 2026</p>
 
   <p>This Privacy Notice for <strong>Cloud Continuum</strong> ("we," "us," or "our"), describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services ("Services"), including when you:</p>
   <ul>
@@ -164,6 +164,9 @@
     <p class="name">E. Analytics &amp; Insights</p>
     <p><strong>Functionality:</strong> Generates visual reports (charts, monthly spending trends, category breakdowns).</p>
     <p><strong>Mechanism:</strong> Queries data directly from the local SQLite database. Optional AI models (e.g., Gemini API) may process anonymized transaction titles locally/cloud-side to suggest automatic categories.</p>
+    <p><strong>Note:</strong> The charts you see in the app are built on your device from your own records. This is separate from the
+      usage measurement described in <a href="#usage-analytics">How we measure app usage</a>, which is about how the app is used, not
+      what your transactions say.</p>
   </div>
 
   <h2 id="sms">Android SMS Transaction Detection</h2>
@@ -235,6 +238,82 @@
   <p>When you log out, or when you delete your account, the app wipes its entire local database from the phone. The SMS review list, including any message text still sitting in it, is deleted first, before anything else. The app's stored settings are cleared at the same time, so your bank list, your keyword list and the on/off setting go with them.</p>
   <p>Deleting your account also sends a deletion request to our servers, which removes the records held against your account. Logging out does not do this — it clears the phone only.</p>
 
+  <h2 id="usage-analytics">How we measure app usage</h2>
+  <p class="in-short"><strong>In Short:</strong> We use Google's analytics and crash-reporting tools to understand how the app is used
+    and to fix problems. We send which screens you open and which features you use, and money figures only as broad ranges &mdash; never
+    an exact amount, and never the words you type.</p>
+
+  <h3>Who processes this</h3>
+  <p>We use <strong>Google Analytics for Firebase</strong> and <strong>Firebase Crashlytics</strong>, both operated by Google as a
+    third party. Information sent to these tools is processed by Google on our behalf and is also subject to Google's own practices.
+    We also use <strong>Firebase App Check</strong>, which sends Google a device attestation &mdash; a signal confirming the request
+    comes from a genuine installation of our app &mdash; solely to protect our servers from abuse; it does not identify you. You can
+    read how Google handles this information at
+    <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses
+    information from sites or apps that use our services</a>.</p>
+
+  <h3>What we send</h3>
+  <ul>
+    <li><strong>How you use the app.</strong> Which screens you open, which features you use, and the fact that you took an action
+      &mdash; for example that you added a transaction, finished setting up your budget, created a savings goal, or shared a report.</li>
+    <li><strong>Money as ranges, never exact figures.</strong> Where an amount matters to understanding how the app is used, we send a
+      broad range instead of the number &mdash; for example &ldquo;1k&ndash;5k&rdquo; rather than 1,250.00. We never send an exact
+      amount, a balance, or a total.</li>
+    <li><strong>A few general facts about your account.</strong> Whether you have finished budget setup, which day of the month your
+      budget resets, roughly how many envelopes and savings goals you have (as a range such as &ldquo;4&ndash;6&rdquo;, not a list),
+      your app language, your currency, and whether notifications and SMS detection are switched on.</li>
+    <li><strong>Device and app information collected automatically by Google.</strong> Device model, operating system version, app
+      version, an app instance identifier, and an approximate region derived from your network address. We do not collect your precise
+      location, and we do not collect your device's advertising identifier.</li>
+    <li><strong>A pseudonymous account identifier.</strong> An internal ID that identifies your account to us. It is not your name,
+      email address or phone number, and it cannot be read as them.</li>
+  </ul>
+
+  <h3>What we never send</h3>
+  <p>The following never leave your device through these tools:</p>
+  <ul>
+    <li>Your name, email address, phone number, postal address or national ID</li>
+    <li>Exact amounts, balances or account numbers</li>
+    <li>Transaction titles, descriptions or notes</li>
+    <li>Names you have given to your categories, envelopes or savings goals</li>
+    <li>Bank or sender names you add, and the keywords you choose</li>
+    <li>The content of any SMS message</li>
+    <li>Anything else you type in free text, including search terms</li>
+  </ul>
+  <p>Where something went wrong, we send a short fixed code describing the kind of error &mdash; for example &ldquo;network&rdquo; or
+    &ldquo;timeout&rdquo; &mdash; chosen from a fixed list. We do not send error messages that could contain your information.</p>
+
+  <h3>Why we do this</h3>
+  <p>To understand how the app is used, to find and fix problems, and to decide what to improve. <strong>We do not use this information
+    for advertising, and we do not use advertising or ad-personalisation services in the app.</strong> We do not sell it, and we do not
+    use it to build a profile about you for marketing.</p>
+
+  <h3>Crash and error reports</h3>
+  <p>When the app crashes or hits an unexpected error, Firebase Crashlytics receives a technical report: what the app was doing at the
+    time, the sequence of code that failed, the device model and operating system version, the app version, and the same pseudonymous
+    account identifier described above. These reports are for diagnosing faults. They are not intended to contain your financial records
+    or anything you have typed.</p>
+
+  <h3>How long it is kept</h3>
+  <p>Usage information held in Google Analytics is kept for 14 months, after which Google deletes it. For crash reports, Google states that Firebase Crashlytics keeps
+    crash stack traces, extracted crash data and the associated identifiers for <strong>90 days</strong>, after which it begins
+    removing them from its live and backup systems &mdash; see Google's
+    <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Privacy and Security in
+    Firebase</a>. This is separate from the retention of your account and financial records described in
+    <a href="#inforetain">How long do we keep your information?</a></p>
+
+  <h3>Your choices</h3>
+  <p>Usage measurement runs whenever you use the app, and there is currently no setting inside the app to switch it off. If you would
+    like us to stop processing this information about you, contact us using the details in
+    <a href="#contact">How can you contact us about this notice?</a> and we will act on your request.</p>
+
+  <h3>Deleting this information</h3>
+  <p>When you delete your account, we remove your records from our servers and wipe the app's data from your device, and we stop
+    attaching your pseudonymous identifier to any further usage information. <strong>Usage and crash information already collected is
+    held by Google in a pseudonymous form and is not automatically deleted by that process.</strong> It expires on its own at the end of
+    the retention period above. If you would like us to ask Google to delete it sooner, email us using the details in
+    <a href="#contact">How can you contact us about this notice?</a> and we will submit a deletion request.</p>
+
   <h2>Data Collection Summary</h2>
   <div class="table-scroll">
     <table>
@@ -260,7 +339,8 @@
           <td>Transactions, incomes, budgets, envelope balances, savings goals</td>
           <td>Core app functionality: tracking money, computing balances, generating spending analytics.</td>
           <td>Local DB &amp; Encrypted Cloud Server</td>
-          <td>No (Strictly confidential)</td>
+          <td>Your records are not shared. Broad ranges only (e.g. &ldquo;1k&ndash;5k&rdquo;, never an exact figure) are sent to
+              Google Analytics for Firebase &mdash; see <a href="#usage-analytics">How we measure app usage</a>.</td>
         </tr>
         <tr>
           <td><strong>SMS Data</strong></td>
@@ -274,14 +354,31 @@
           <td>Device ID, OS version, sync sequence numbers, network status</td>
           <td>Managing multi-device database sync, background queueing, error logging.</td>
           <td>Local DB &amp; Cloud Server</td>
-          <td>No</td>
+          <td>Device model, OS version, app version, app instance ID and approximate region are collected automatically by Google
+              Analytics for Firebase and Firebase Crashlytics.</td>
+        </tr>
+        <tr>
+          <td><strong>App Usage</strong></td>
+          <td>Screens opened, features used, actions taken (e.g. a transaction added, budget setup finished), counts of envelopes and
+              goals as ranges, app language, currency, and whether notifications and SMS detection are on</td>
+          <td>Understanding how the app is used, finding problems, deciding what to improve. Not used for advertising.</td>
+          <td>Google Analytics for Firebase</td>
+          <td>Yes &mdash; Google. See <a href="#usage-analytics">How we measure app usage</a></td>
+        </tr>
+        <tr>
+          <td><strong>Crash &amp; Error Reports</strong></td>
+          <td>Technical fault reports: what the app was doing, the failing code path, device model, OS and app version, and a
+              pseudonymous account identifier</td>
+          <td>Diagnosing and fixing crashes and errors.</td>
+          <td>Firebase Crashlytics</td>
+          <td>Yes &mdash; Google. See <a href="#usage-analytics">How we measure app usage</a></td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <h2>Sensitive System Permissions Required</h2>
-  <p>To operate its core features, PayZabt requests the following system permissions:</p>
+  <p>To operate its core features, Fenvo requests the following system permissions:</p>
   <ul>
     <li><strong>RECEIVE_SMS / READ_SMS (Android):</strong> Optional, and switched off until you switch it on. Used to detect banking transaction alerts from sender names you add yourself. Messages from other senders, one-time passcodes, and messages that are not transactions are rejected on the device and are never saved or sent. Messages that pass that check are sent to our servers as text so the transaction can be read out of them — see <a href="#sms">Android SMS Transaction Detection</a>. The app never sends SMS messages.</li>
     <li><strong>INTERNET &amp; ACCESS_NETWORK_STATE:</strong> Required for Firebase authentication checks, background database sync, and connectivity status monitoring.</li>
@@ -291,7 +388,9 @@
   <h2>Security &amp; Data Retention Policies</h2>
   <ul>
     <li><strong>Data Encryption:</strong> All network communication between the app and backend services uses TLS/HTTPS encryption. Local SQLite databases are stored in secure application-private sandboxes.</li>
-    <li><strong>Data Retention:</strong> Personal and financial data is retained as long as the user maintains an active account.</li>
+    <li><strong>Data Retention:</strong> Personal and financial data is retained as long as the user maintains an active account.
+      Usage and crash information held by Google is kept for the periods described in
+      <a href="#usage-analytics">How we measure app usage</a>.</li>
     <li><strong>Account &amp; Data Deletion:</strong> Users can request full account and data deletion through the app settings or via a web contact form. Upon deletion, all cloud database records associated with the User ID are permanently purged, and local database files are wiped from the device upon logout.</li>
   </ul>
 
@@ -304,7 +403,9 @@
 
   <p><strong>Do we process any sensitive personal information?</strong> Some of the information may be considered "special" or "sensitive" in certain jurisdictions, for example your racial or ethnic origins, sexual orientation, and religious beliefs. We do not process sensitive personal information.</p>
 
-  <p><strong>Do we collect any information from third parties?</strong> We do not collect any information from third parties.</p>
+  <p><strong>Do we collect any information from third parties?</strong> We do not collect information about you from third parties.
+    We do share limited usage and crash information with Google, as described in
+    <a href="#usage-analytics">How we measure app usage</a>.</p>
 
   <p><strong>How do we process your information?</strong> We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about <a href="#infouse">how we process your information</a>.</p>
 
@@ -322,6 +423,7 @@
 
   <h2 id="toc">Table of Contents</h2>
   <div class="toc">
+    <a href="#usage-analytics">How we measure app usage</a>
     <a href="#infocollect">1. What information do we collect?</a>
     <a href="#infouse">2. How do we process your information?</a>
     <a href="#whoshare">3. When and with whom do we share your personal information?</a>
@@ -384,6 +486,9 @@
   <p class="in-short"><strong>In Short:</strong> We may share information in specific situations described in this section and/or with the following third parties.</p>
   <p>We may need to share your personal information in the following situations:</p>
   <ul>
+    <li><strong>Service providers.</strong> We use Google (Google Analytics for Firebase, Firebase Crashlytics, Firebase
+      Authentication, Firebase Cloud Messaging and Firebase App Check) to operate and measure the Services. Information shared with
+      Google for measurement and crash reporting is described in <a href="#usage-analytics">How we measure app usage</a>.</li>
     <li><strong>Business Transfers.</strong> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</li>
   </ul>
 
