@@ -214,18 +214,22 @@
     <p>Once a message reaches our servers it is used to produce the transaction and for nothing else. It is kept in line with <a href="#inforetain">"How long do we keep your information?"</a> below.</p>
   </div>
 
+  <h3>Your bank list and your keyword list</h3>
+  <p>The senders you add and the words you choose are saved to your account as part of your settings, and travel over the same encrypted connection as the rest of your settings.</p>
+  <p>This is so that they come back if you reinstall the app or sign in on another phone. Without it you would be returned to an empty setup screen, and the feature would silently stop capturing anything until you filled both lists in again.</p>
+  <p>They are used to configure the checks that run on your phone, and for nothing else. We do not use them to build a profile of who you bank with.</p>
+
   <h3>What we do not send</h3>
   <ul>
-    <li><strong>Your bank list and your keyword list.</strong> Both are stored on your phone only. They are not part of your account, they are not backed up, they are not synchronised to your other devices, and they are never sent to us.</li>
     <li><strong>Messages that failed the checks.</strong> They never leave the phone, in any form.</li>
-    <li><strong>Any record of who sends you messages.</strong> Where the app keeps a breakdown of senders to help us improve recognition, it stays on the phone.</li>
+    <li><strong>The breakdown of how many messages each sender produced.</strong> The app keeps per-sender counts so it can warn you when a bank has gone quiet. Those counts stay on the phone and are never sent to us. (The sender names themselves are part of your bank list, which is saved to your account — see above.)</li>
     <li><strong>Message text in usage statistics.</strong> When we record that the feature was used, we record counts, the currency, and a rounded amount range. No message text and no merchant name is ever included.</li>
   </ul>
 
   <h3>What is kept on your phone</h3>
   <p>The text of a message is stored in the app's own storage on your phone while the transaction it produced is waiting for you to review it. This is so you can check the draft against the message it came from.</p>
   <p>When you confirm the transaction, or when you discard it, the message text is deleted. A small record stays behind without the text, so the same bank message cannot turn into a second transaction later.</p>
-  <p>A draft you never review stays in the review list, with its message text, until you review it or until the data is deleted as described below. It does not expire on its own.</p>
+  <p>The text stays on your phone only until you review the transaction, or seven days, whichever comes first. A draft you never review stays in the review list after that, without its message text — the draft itself remains, and you can still confirm or discard it.</p>
 
   <h3>Your controls</h3>
   <ul>
